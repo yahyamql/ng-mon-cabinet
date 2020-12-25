@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng-mon-cabinet';
+  title = 'ng-medecin';
+  subTitle: String = 'Mon cabinet';
+
+  onChangeTitle(event) {
+    console.log('parent: ', event);
+    this.subTitle = event;
+  }
 }
