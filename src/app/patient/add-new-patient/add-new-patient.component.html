@@ -1,51 +1,53 @@
 <div class="container-fluid">
   
       <table class="example-full-width" cellspacing="0"><tr>
-        <td><mat-form-field class="example-full-width">
+        <td><mat-form-field appearance="outline" class="example-full-width">
           <mat-label>Prénom</mat-label>
           <input matInput [(ngModel)]="patient.firstName">
         </mat-form-field></td>
-        <td><mat-form-field class="example-full-width">
+        <td><mat-form-field appearance="outline" class="example-full-width">
           <mat-label>Nom</mat-label>
           <input matInput [(ngModel)]="patient.lastName">
         </mat-form-field></td>
       </tr></table>
     
       <table class="example-full-width">
-         <td>
-          <mat-form-field class="example-full-width">
-            <mat-label>Addresse complète</mat-label>
-            <textarea matInput placeholder="Ex. Rue Badr..." [(ngModel)]="patient.address"></textarea>
-          </mat-form-field>
-        </td> 
         <td>
-          <mat-radio-group [(ngModel)]="patient.gender" aria-label="Select an option">
-            <!-- <mat-label>Sexe</mat-label> -->
-            <mat-radio-button value="HOMME">Homme</mat-radio-button>
-            <mat-radio-button value="FEMME">Femme</mat-radio-button>
-          </mat-radio-group>
-        </td>
-      </table>
-      <table class="example-full-width" cellspacing="0"><tr>
-        <td><mat-form-field class="example-full-width">
-          <mat-label>Age</mat-label>
-          <input matInput placeholder="Ex. 25" [(ngModel)]="patient.age">
-        </mat-form-field></td>
-        <td><mat-form-field class="example-full-width">
-          <mat-label>Numéro portable</mat-label>
-          <input type="tel" [(ngModel)]="patient.tel"  matInput placeholder="Ex. 06 XX XX XX XX">
-        </mat-form-field></td>
-      </tr></table>
-
-      <table class="example-full-width" cellspacing="0"><tr>
-        <td>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Date de naissance</mat-label>
             <input [(ngModel)]="patient.dateBirth" placeholder="6/12/1991" matInput [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </td>
+        <td>
+          <mat-radio-group appearance="outline" [(ngModel)]="patient.gender" aria-label="Select an option">
+            
+            <mat-radio-button value="HOMME">Homme</mat-radio-button>
+            <mat-radio-button value="FEMME">Femme</mat-radio-button>
+          </mat-radio-group>
+        </td>
+      </table>
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Age</mat-label>
+          <input matInput placeholder="Ex. 25" [(ngModel)]="patient.age">
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Numéro portable</mat-label>
+          <input type="tel" [(ngModel)]="patient.tel"  matInput placeholder="Ex. 06 XX XX XX XX">
+        </mat-form-field></td>
+      </tr></table>
+
+      <table class="example-full-width" cellspacing="0"><tr>
+        <!--Date de naissance -->
+        
+        <td>
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Addresse complète</mat-label>
+            <textarea matInput placeholder="Ex. Rue Badr..." [(ngModel)]="patient.address"></textarea>
+          </mat-form-field>
+        </td> 
         </tr></table>
       <button mat-raised-button color="primary" (click)="insertPatient()">Enregistrer</button>
     

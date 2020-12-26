@@ -11,7 +11,7 @@ import { PatientService } from 'src/app/service/patient.service';
 })
 export class ManagePatientComponent implements OnInit {
   ELEMENT_DATA = [];
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'dateCreation', 'action'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName','tel', 'dateCreation', 'action'];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
   applyFilter(event: Event) {

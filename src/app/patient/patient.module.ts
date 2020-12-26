@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
+
 @NgModule({
   declarations: [AddNewPatientComponent, ManagePatientComponent],
   imports: [
@@ -15,7 +16,8 @@ import { MaterialModule } from '../material/material.module';
     HttpClientModule,
     MaterialModule
   ],
-  providers: [PatientService],
+  providers: [PatientService,
+  ],
   exports: [AddNewPatientComponent]
 })
 export class PatientModule { }

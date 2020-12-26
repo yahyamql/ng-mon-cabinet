@@ -26,6 +26,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
+              "src/unicorn-app-theme.scss",
               "./node_modules/bootstrap/dist/css/bootstrap-grid.min.css"
             ],
             "scripts": []
