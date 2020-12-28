@@ -1,7 +1,8 @@
-.example-full-width {
-    width: 70%;
-}
 
 .mat-radio-button ~ .mat-radio-button {
     margin-left: 16px;
   }
+.notif-form {
+    background-color: rgb(255, 194, 125);
+    color: firebrick;
+}

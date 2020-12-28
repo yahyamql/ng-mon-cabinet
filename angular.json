@@ -28,7 +28,8 @@
               "src/styles.css",
               "src/unicorn-app-theme.scss",
               "./node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
-              "./node_modules/@sweetalert2/theme-material-ui/material-ui.css"
+              "./node_modules/@sweetalert2/theme-material-ui/material-ui.css",
+              "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
               "./node_modules/sweetalert2/dist/sweetalert2.min.js"

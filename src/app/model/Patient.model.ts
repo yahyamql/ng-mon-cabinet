@@ -4,6 +4,7 @@ export class Patient {
     public address: String;
     public tel: Number;
     public age: Number;
+    public numberChildren: Number;
     public gender: String;
     public insurance: String;
     public familySituation: String;

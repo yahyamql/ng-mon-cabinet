@@ -23,7 +23,7 @@ import { AgendaModule } from './agenda/agenda.module';
     SharedModule,
     PatientModule,
     RouterModule,
-    AgendaModule
+    AgendaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -36,6 +36,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 @NgModule({
     imports: [
         MatAutocompleteModule,
@@ -72,7 +73,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
         MatTooltipModule,
         MatTreeModule,
         MatNativeDateModule,
-        SweetAlert2Module
+        SweetAlert2Module,
+        FontAwesomeModule
       
     ],
     exports: [
@@ -111,7 +113,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
         MatTooltipModule,
         MatTreeModule,
         MatNativeDateModule,
-        
+        FontAwesomeModule
     ],
     providers: [     
     ]

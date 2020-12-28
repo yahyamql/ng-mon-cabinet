@@ -1,5 +1,14 @@
-<div class="container-fluid">
-  
+<h2 mat-dialog-title>Ajouter un nouveau patient</h2>
+<mat-dialog-content>
+
+
+<mat-card *ngIf="false" class="warn mt-2 mr-2 notif-form">
+  <h4>Erreur</h4>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat ipsum consequatur harum architecto excepturi assumenda veritatis quibusdam incidunt. Maxime porro ullam animi, veritatis deleniti ea fuga necessitatibus accusamus eos perspiciatis!
+  </p>
+</mat-card>
+<div class="container-fluid mt-2">
       <table class="example-full-width" cellspacing="0"><tr>
         <td><mat-form-field appearance="outline" class="example-full-width">
           <mat-label>Prénom</mat-label>
@@ -10,7 +19,6 @@
           <input matInput [(ngModel)]="patient.lastName" required>
         </mat-form-field></td>
       </tr></table>
-    
       <table class="example-full-width">
         <td>
           <mat-form-field appearance="outline">
@@ -34,9 +42,13 @@
             <mat-label>Situation familiale</mat-label>
             <mat-select [(value)]="patient.familySituation" required>
               <mat-option [value]="familySituation.single.key">{{familySituation.single.value}}</mat-option>
-              <mat-option [value]="familySituation.divorced.key">{{familySituation.divorced.value}}</mat-option>
               <mat-option [value]="familySituation.maried.key">{{familySituation.maried.value}}</mat-option>
+              <mat-option [value]="familySituation.divorced.key">{{familySituation.divorced.value}}</mat-option>
             </mat-select>
+          </mat-form-field>
+          <mat-form-field class="ml-1"  appearance="outline">
+            <mat-label>Nombre d'enfant</mat-label>
+            <input type="number" [(ngModel)]="patient.numberChildren" required matInput placeholder="Ex. 3">
           </mat-form-field>
       </td>
         <td><mat-form-field class="example-full-width" appearance="outline">
@@ -69,6 +81,9 @@
         </tr>
       </table>
       <button mat-raised-button color="primary" (click)="insertPatient()">Enregistrer</button>
-    
-  
 </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true" (click)="insertPatient()" cdkFocusInitial mat-raised-button color="primary">Ajouter</button>
+  <button mat-button mat-dialog-close>Annuler</button>
+</mat-dialog-actions>

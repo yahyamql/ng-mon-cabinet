@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { PatientService } from 'src/app/service/patient.service';
+import { DialogContentComponent } from 'src/app/shared/dialog-content/dialog-content.component';
 import Swal  from 'sweetalert2/dist/sweetalert2.js';
+import { AddNewPatientComponent } from '../add-new-patient/add-new-patient.component';
 
 
 @Component({
@@ -14,12 +17,29 @@ export class ManagePatientComponent implements OnInit {
   displayedColumns: string[] = ['id', 'firstName', 'lastName','tel', 'dateCreation', 'action'];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  addNewPatient() {
+    const dialogRef = this.dialog.open(AddNewPatientComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService,
+              private dialog: MatDialog
+    ) { }
 
   ngOnInit() {
     this.patientService.getAll().subscribe((data: any) => {
@@ -34,27 +54,26 @@ export class ManagePatientComponent implements OnInit {
   }
 
 deletePatient(id: number) {
-  
-Swal.fire({
-  title: 'Supprimer ce patient ?' + id,
-  text: "Attention : toutes ses données seront perdues !",
-  icon: 'warning',
-  showCancelButton: true,
-  //confirmButtonColor: '#3085d6',
-  //cancelButtonColor: '#d33',
-  confirmButtonText: 'Supprimer'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.patientService.delete(id).subscribe(data=> {
-      Swal.fire(
-        'Supprimé !',
-        'Patient suuprimé avec succés.',
-        'success');
-      this.getAllPatient();
+  Swal.fire({
+    title: 'Supprimer ce patient ?',
+    text: "Attention : toutes ses données seront perdues !",
+    icon: 'warning',
+    showCancelButton: true,
+    //confirmButtonColor: '#3085d6',
+    //cancelButtonColor: '#d33',
+    confirmButtonText: 'Supprimer'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.patientService.delete(id).subscribe(data=> {
+        Swal.fire(
+          'Supprimé !',
+          'Patient suuprimé avec succés.',
+          'success');
+        this.getAllPatient();
 
-    });
-  }
-})
+      });
+    }
+  })
 }
 
 }

@@ -1,5 +1,5 @@
 export const TITLES = {
-    GERER_PATIENT : 'Gérer les patients',
+    GERER_PATIENT : 'Patients',
     AJOUTER_PATIENT : 'Ajouter un patient',
     AGENDA : 'Agenda',
 }
