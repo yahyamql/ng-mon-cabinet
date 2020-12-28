@@ -35,7 +35,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 @NgModule({
     imports: [
         MatAutocompleteModule,
@@ -72,9 +72,11 @@ import { MatTreeModule } from '@angular/material/tree';
         MatTooltipModule,
         MatTreeModule,
         MatNativeDateModule,
+        SweetAlert2Module
       
     ],
     exports: [
+        SweetAlert2Module,
         MatAutocompleteModule,
         MatBadgeModule,
         MatButtonModule,

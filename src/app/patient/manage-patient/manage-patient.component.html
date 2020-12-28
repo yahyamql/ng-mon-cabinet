@@ -39,12 +39,9 @@
     <td mat-cell *matCellDef="let element">
       <!--Actions per row-->
       <div class="example-button-row">
-        <button mat-button>Basic</button>
-        <button mat-button color="primary">Primary</button>
-        <button mat-button color="accent">Accent</button>
-        <button mat-button color="warn">Supprimer</button>
-        <button mat-button disabled>Disabled</button>
-        <a mat-button href="https://www.google.com/" target="_blank">Link</a>
+        <button mat-button color="primary">Détails</button>
+        <button mat-button color="accent">Modifier</button>
+        <button mat-button color="warn" (click)='deletePatient(element.id)'>Supprimer</button>
       </div>
 
     </td>

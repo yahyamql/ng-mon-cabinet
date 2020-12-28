@@ -13,8 +13,13 @@ export class PatientService {
   getAll() {
     return this.http.get(environment.BASE_API + PATIENT_URL);
   }
+
   insert(patient: Patient) {
     return this.http.post(environment.BASE_API + PATIENT_URL, patient);
+  }
+
+  delete(id: number) {
+    return this.http.delete(environment.BASE_API + PATIENT_URL + id);
   }
 
 }

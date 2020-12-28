@@ -4,6 +4,12 @@ export const TITLES = {
     AGENDA : 'Agenda',
 }
 
+export const FAMILY_SITUATION = {
+  single : {key: 'SINGLE', value: 'Célibataire'},
+  divorced : {key: 'DIVORCED', value: 'Divorcé(e)'},
+  maried : {key: 'MARIED', value: 'Marié(e)'}
+}
+
 export const MY_FORMATS = {
     parse: {
       dateInput: 'LL',

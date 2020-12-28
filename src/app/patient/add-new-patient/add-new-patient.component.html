@@ -3,11 +3,11 @@
       <table class="example-full-width" cellspacing="0"><tr>
         <td><mat-form-field appearance="outline" class="example-full-width">
           <mat-label>Prénom</mat-label>
-          <input matInput [(ngModel)]="patient.firstName">
+          <input matInput [(ngModel)]="patient.firstName" required>
         </mat-form-field></td>
         <td><mat-form-field appearance="outline" class="example-full-width">
           <mat-label>Nom</mat-label>
-          <input matInput [(ngModel)]="patient.lastName">
+          <input matInput [(ngModel)]="patient.lastName" required>
         </mat-form-field></td>
       </tr></table>
     
@@ -15,40 +15,59 @@
         <td>
           <mat-form-field appearance="outline">
             <mat-label>Date de naissance</mat-label>
-            <input [(ngModel)]="patient.dateBirth" placeholder="6/12/1991" matInput [matDatepicker]="picker">
+            <input [(ngModel)]="patient.dateBirth" placeholder="6/12/1991" matInput [matDatepicker]="picker" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </td>
         <td>
-          <mat-radio-group appearance="outline" [(ngModel)]="patient.gender" aria-label="Select an option">
+          <mat-radio-group  appearance="outline" [(ngModel)]="patient.gender" aria-label="Select an option">
             
-            <mat-radio-button value="HOMME">Homme</mat-radio-button>
-            <mat-radio-button value="FEMME">Femme</mat-radio-button>
+            <mat-radio-button name="gender" value="HOMME" required>Homme</mat-radio-button>
+            <mat-radio-button name="gender" value="FEMME" required>Femme</mat-radio-button>
           </mat-radio-group>
         </td>
       </table>
       <table class="example-full-width" cellspacing="0"><tr>
-        <td><mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Age</mat-label>
-          <input matInput placeholder="Ex. 25" [(ngModel)]="patient.age">
-        </mat-form-field></td>
+        <td>
+          <mat-form-field appearance="outline">
+            <mat-label>Situation familiale</mat-label>
+            <mat-select [(value)]="patient.familySituation" required>
+              <mat-option [value]="familySituation.single.key">{{familySituation.single.value}}</mat-option>
+              <mat-option [value]="familySituation.divorced.key">{{familySituation.divorced.value}}</mat-option>
+              <mat-option [value]="familySituation.maried.key">{{familySituation.maried.value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </td>
         <td><mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Numéro portable</mat-label>
-          <input type="tel" [(ngModel)]="patient.tel"  matInput placeholder="Ex. 06 XX XX XX XX">
+          <input type="tel" [(ngModel)]="patient.tel" required matInput placeholder="Ex. 06 XX XX XX XX">
         </mat-form-field></td>
       </tr></table>
 
-      <table class="example-full-width" cellspacing="0"><tr>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+        <!--Assurance -->
+        <td>
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Assurance</mat-label>
+            <input type="text" [(ngModel)]="patient.insurance" required  matInput placeholder="Ex. Axa">
+          </mat-form-field>
+        </td> 
         <!--Date de naissance -->
-        
         <td>
           <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Addresse complète</mat-label>
-            <textarea matInput placeholder="Ex. Rue Badr..." [(ngModel)]="patient.address"></textarea>
+            <textarea matInput placeholder="Ex. Rue Badr..." required [(ngModel)]="patient.address"></textarea>
           </mat-form-field>
         </td> 
-        </tr></table>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <td></td>
+        </tr>
+      </table>
       <button mat-raised-button color="primary" (click)="insertPatient()">Enregistrer</button>
     
   
