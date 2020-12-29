@@ -14,7 +14,7 @@ import { AddNewPatientComponent } from '../add-new-patient/add-new-patient.compo
 })
 export class ManagePatientComponent implements OnInit {
   ELEMENT_DATA = [];
-  displayedColumns: string[] = ['id', 'firstName', 'lastName','tel', 'dateCreation', 'action'];
+  displayedColumns: string[] = ['firstName', 'lastName','tel', 'dateCreation', 'action'];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
   openDialog() {
@@ -30,6 +30,7 @@ export class ManagePatientComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      if(result) {this.getAllPatient();}
     });
   }
   

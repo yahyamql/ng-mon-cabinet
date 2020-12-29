@@ -4,9 +4,9 @@ export class Patient {
     public address: String;
     public tel: Number;
     public age: Number;
-    public numberChildren: Number;
-    public gender: String;
-    public insurance: String;
+    public numberChildren: Number = 0;
+    public gender: String = 'HOMME';
+    public insurance: String = 'Sans';
     public familySituation: String;
     public dateBirth: Date;
 }

@@ -1,0 +1,31 @@
+<h1 mat-dialog-title class="example-full-width">Créer un rendez-vous</h1>
+<div mat-dialog-content class="full-wdith">
+  <form [formGroup]="myControl" class="example-form">
+    <mat-form-field appearance="outline" class="example-full-width">
+      <mat-label>Chercher par nom ou prénom</mat-label>
+      <input 
+      required 
+      type="text" 
+      matInput [formControl]="myControl" 
+      [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  
+</div>
+<mat-dialog-actions align="end">
+  <button 
+  
+  mat-button 
+  [mat-dialog-close]="true" 
+  type="submit"
+  cdkFocusInitial 
+  mat-raised-button 
+  color="primary">
+  Assigner</button>
+  <button mat-button mat-dialog-close>Annuler</button>
+</mat-dialog-actions>

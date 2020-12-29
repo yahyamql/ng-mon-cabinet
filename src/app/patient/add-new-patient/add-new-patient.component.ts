@@ -16,7 +16,7 @@ export class AddNewPatientComponent implements OnInit {
 
   ngOnInit() {}
  
-  insertPatient() {
+  onSubmit() {
     console.log('insertPatient : ', this.patient);
     this.patientService.insert(this.patient).subscribe((data)=> {
       console.log(data);
