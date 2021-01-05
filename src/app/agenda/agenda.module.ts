@@ -10,6 +10,7 @@ import timeGridPlugin  from '@fullcalendar/timegrid'; // a plugin
 import { MaterialModule } from '../material/material.module';
 import { SeanceComponent } from './seance/seance.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgendaService } from './agenda.service';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -17,17 +18,16 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   timeGridPlugin,
   listPlugin,
 ]);
-
-
 @NgModule({
   declarations: [ManageAgendaComponent, SeanceComponent],
   imports: [
     CommonModule,
     FullCalendarModule,
     MaterialModule,
-    
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
-  exports: [ManageAgendaComponent]
+  exports: [ManageAgendaComponent],
+  providers:  [AgendaService]
 })
 export class AgendaModule { }

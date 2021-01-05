@@ -10,6 +10,7 @@ import { AddNewPatientComponent } from './patient/add-new-patient/add-new-patien
 import { PatientModule } from './patient/patient.module';
 import { RouterModule } from '@angular/router';
 import { AgendaModule } from './agenda/agenda.module';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AgendaModule } from './agenda/agenda.module';
     PatientModule,
     RouterModule,
     AgendaModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],

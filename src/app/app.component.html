@@ -1,19 +1,17 @@
 <div class="container-100">
   <div class="row">
     <div class="col">
-      <app-header [subTitle]="subTitle"></app-header>
+      <app-header (toggleSideBar)="onToggle($event)" [subTitle]="subTitle"></app-header>
     </div>
   </div>
   <div class="row">
     
-    <div class="col-2">
-      <app-sidebar (changeTitle)="onChangeTitle($event)"></app-sidebar>
+    <div class="col-2" *ngIf="isOpen">
+          <app-sidebar  (changeTitle)="onChangeTitle($event)"></app-sidebar>
     </div>
     
-    <div class="col">
-    <p>
+    <div class="col app-content">
       <router-outlet></router-outlet>
-    </p>
     </div>
   </div>
   <div class="row">

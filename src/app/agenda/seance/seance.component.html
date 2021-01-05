@@ -1,19 +1,30 @@
 <h1 mat-dialog-title class="example-full-width">Créer un rendez-vous</h1>
 <div mat-dialog-content class="full-wdith">
   <form [formGroup]="myControl" class="example-form">
+    <p>
+      <strong>A :</strong> {{dataPassed.currentDateTime | date:'medium'}} 
+    </p>
     <mat-form-field appearance="outline" class="example-full-width">
       <mat-label>Chercher par nom ou prénom</mat-label>
       <input 
       required 
-      type="text" 
-      matInput [formControl]="myControl" 
+      type="text"
+      (keyup)="onSearch($event)"
+      matInput [formControl]="searchPatientForm" 
       [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-autocomplete autoActiveFirstOption  #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option.name}}
+          {{option.firstName}} {{option.lastName}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <mat-slide-toggle
+          
+          [formControl]="confirmForm"
+            class="example-margin"
+            (change)="onChangeConfirm()">
+      <span>Passé(e)</span>
+    </mat-slide-toggle>
   </form>
   
 </div>
@@ -23,9 +34,10 @@
   mat-button 
   [mat-dialog-close]="true" 
   type="submit"
+  (click)="onCreate()"
   cdkFocusInitial 
   mat-raised-button 
   color="primary">
-  Assigner</button>
+  Enregistrer</button>
   <button mat-button mat-dialog-close>Annuler</button>
 </mat-dialog-actions>

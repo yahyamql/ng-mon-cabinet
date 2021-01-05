@@ -21,7 +21,6 @@ export class AddNewPatientComponent implements OnInit {
     this.patientService.insert(this.patient).subscribe((data)=> {
       console.log(data);
       Swal.fire({
-        
         icon: 'success',
         title: 'Patient enregistré avec succés',
         showConfirmButton: false,

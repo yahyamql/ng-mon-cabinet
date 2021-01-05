@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { FacadeService } from 'src/app/service/facade.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +10,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input() subTitle: String = 'Mon Cabinet';
-  opened: boolean;
+  @Output() toggleSideBar: EventEmitter<boolean> = new EventEmitter();
+  isOpened = false;
+  onToggleSideBar() {
+    this.isOpened = !this.isOpened;
+    this.toggleSideBar.emit(this.isOpened);
+  }
+ 
 
-  constructor() { }
+  constructor( private facadeService: FacadeService) { }
 
   ngOnInit() {
+ 
   }
 
 }

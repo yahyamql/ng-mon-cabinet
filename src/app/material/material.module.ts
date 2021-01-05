@@ -113,7 +113,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
         MatTooltipModule,
         MatTreeModule,
         MatNativeDateModule,
-        FontAwesomeModule
+        FontAwesomeModule,
     ],
     providers: [     
     ]

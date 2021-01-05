@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FullCalendarComponent, CalendarOptions } from '@fullcalendar/angular';
+import { FullCalendarComponent, CalendarOptions, EventApi } from '@fullcalendar/angular';
 import { SeanceComponent } from '../seance/seance.component';
 import { FormControl } from '@angular/forms';
 
@@ -10,6 +10,10 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./manage-agenda.component.css']
 })
 export class ManageAgendaComponent implements OnInit {
+  dataPassedToSeance = {
+    fullName: '',
+    currentDateTime: ''
+  };
 
    // references the #calendar in the template
    @ViewChild('calendar') calendarComponent: FullCalendarComponent;
@@ -52,19 +56,22 @@ export class ManageAgendaComponent implements OnInit {
 
   handleDateClick(arg) {
    // console.log('arg : ', arg);
-   // alert('date click! ' + arg.dateStr)
-    this.createSeance();
+   //alert('date click! ' + arg.dateStr)
+    this.onCreateSeance(arg.dateStr);
   }
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {}
 
-  createSeance() {
-    const dialogRef = this.dialog.open(SeanceComponent);
+  onCreateSeance(arg) {
+    this.dataPassedToSeance.currentDateTime = arg;
+    const dialogRef = this.dialog.open(SeanceComponent, 
+      {data: this.dataPassedToSeance});
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      console.log('dataPassedToSeance.currentDateTime : ', this.dataPassedToSeance.currentDateTime);
+      console.log('dataPassedToSeance.fullName : ', this.dataPassedToSeance.fullName);
     });
-  
   }
 }

@@ -1,20 +1,25 @@
-<div class="mat-app-background accent">
-    <mat-nav-list color="accent">
-        <a mat-list-item 
-        routerLink="/patient" routerLinkActive="active"
-        (click)="onLabelHeaderEmit(titles.GERER_PATIENT)"
-        >
-            <mat-icon mat-list-icon>person_pin</mat-icon>
-            {{titles.GERER_PATIENT}}</a>
-         <a  routerLink="/agenda" routerLinkActive="active"
-         mat-list-item
-         (click)="onLabelHeaderEmit(titles.AGENDA)" >
-         <mat-icon mat-list-icon>book_online</mat-icon>
-         {{titles.AGENDA}}</a>
-
-        <a mat-list-item >Dossier médical</a>
-        <a mat-list-item >Inventaire</a>
-        <a mat-list-item >Tableau de bord</a>
+<!-- toggle sidebar -->
+<!-- <mat-sidenav-container class='app-drawer-container' fullscreen>
+    <mat-sidenav #sidenav mode="side">
+    </mat-sidenav>
+</mat-sidenav-container>
+ -->
+        <div class="mat-app-background accent">
+            <mat-nav-list color="accent">
+                <a mat-list-item 
+                routerLink="/patient" routerLinkActive="active"
+                (click)="onLabelHeaderEmit(titles.GERER_PATIENT)">
+                    <mat-icon mat-list-icon>person_pin</mat-icon>
+                    {{titles.GERER_PATIENT}}</a>
+                 <a  routerLink="/agenda" routerLinkActive="active"
+                 mat-list-item
+                 (click)="onLabelHeaderEmit(titles.AGENDA)" >
+                 <mat-icon mat-list-icon>book_online</mat-icon>
+                 {{titles.AGENDA}}</a>
         
-    </mat-nav-list>
-</div>
+                <a mat-list-item >Dossier médical</a>
+                <a mat-list-item >Inventaire</a>
+                <a mat-list-item >Tableau de bord</a>
+            </mat-nav-list>
+        </div>
+

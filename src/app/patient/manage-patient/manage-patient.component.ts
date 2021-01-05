@@ -68,10 +68,9 @@ deletePatient(id: number) {
       this.patientService.delete(id).subscribe(data=> {
         Swal.fire(
           'Supprimé !',
-          'Patient suuprimé avec succés.',
+          'Patient supprimé avec succés.',
           'success');
         this.getAllPatient();
-
       });
     }
   })
