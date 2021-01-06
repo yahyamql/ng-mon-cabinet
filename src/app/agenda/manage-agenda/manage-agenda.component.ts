@@ -7,6 +7,7 @@ import frLocale from '@fullcalendar/core/locales/fr';
 import { Subject } from 'rxjs';
 import { Patient } from 'src/app/model/Patient.model';
 import { Seance } from 'src/app/model/Seance.model';
+import { AgendaService } from '../agenda.service';
 
 @Component({
   selector: 'app-manage-agenda',
@@ -29,6 +30,12 @@ export class ManageAgendaComponent implements OnInit {
    @ViewChild('calendar') calendarComponent: FullCalendarComponent;
 
    calendarOptions: CalendarOptions = {
+    titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+    month: 'long',
+    year: 'numeric',
+    day: 'numeric',
+    weekday: 'long'
+  },
      locale: frLocale,
     editable: true,
     selectable: true,
@@ -56,22 +63,26 @@ export class ManageAgendaComponent implements OnInit {
    }
 
   handleDateClick(arg) {
+    console.log('arg : ', arg);
       this.seance.dateSeance = arg.dateStr;
       const dialogRef = this.dialog.open(SeanceComponent, 
         {data: this.seance});
       dialogRef.afterClosed().subscribe((result: boolean) => {
         if(result) {
-          this.calendarComponent.getApi().addEvent({ title: this.seance.patient.firstName + '', date: this.seance.dateSeance + '' })
+          this.calendarComponent.getApi().addEvent(
+            { title: this.seance.patient.firstName + ' ' + this.seance.patient.lastName,
+             date: this.seance.dateSeance + '' })
           this.calendarComponent.getApi().addEvent({ title: 'event 3', date: '2021-01-07' })
+          console.log('this.seance : ', this.seance)
+          this.agendaService.insert(this.seance).subscribe((res)=> console.log('seance inserted : ', res));
+
         }
-    //    console.log(`Dialog result: ${result}`);
-    //    console.log('dataPassedToSeance.currentDateTime : ', this.dataPassedToSeance.dateSeance);
-   // console.log('dataPassedToSeance.fullName : ', this.dataPassedToSeance.patient.firstName);
     console.log('dataPassedToSeance : ', this.seance);
       });
   }
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    private agendaService: AgendaService) { }
 
   ngOnInit() {
   }

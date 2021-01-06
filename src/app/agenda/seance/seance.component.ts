@@ -53,6 +53,5 @@ export class SeanceComponent implements OnInit {
 
   onChangeConfirm() {
     this.isConfirm = this.myForm.get('confirmInput').value;
-    console.log('this.isConfirm : ', this.isConfirm);
   }
 }
