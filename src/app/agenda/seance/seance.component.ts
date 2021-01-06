@@ -14,14 +14,23 @@ import { AgendaService } from '../agenda.service';
 export class SeanceComponent implements OnInit {
   isConfirm: boolean;
   seance: Seance;
-  myControl = new FormGroup({});
-  searchPatientForm = new FormControl({});
-  confirmForm = new FormControl({});
+  myForm: FormGroup;
   filteredOptions: Observable<Patient[]>;
   options: Patient[] = [];
   keyword: String;
   constructor(@Inject(MAT_DIALOG_DATA) public dataPassed: any,
               private agendaService: AgendaService) {}
+
+              
+  ngOnInit() {
+    this.myForm = new FormGroup( {
+      'confirmInput': new FormControl(null),
+      'comentInput': new FormControl(null),
+      'searchInput': new FormControl(null),
+    })
+    
+ }
+
 
   onSearch(event: any) {
     if(event.target.value != this.keyword) {
@@ -35,20 +44,7 @@ export class SeanceComponent implements OnInit {
     }
 
   onCreate() {
-    this.dataPassed.fullName = this.myControl.value;
-  }
-
-  ngOnInit() {
-     this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => typeof value === 'string' ? value : value.name),
-      map(value => {
-       this.agendaService.getPatientByKeyword(value).subscribe((data: Patient[])=> {
-        return  this.options = data;
-        });
-      }), map(()=>  {
-        return this.options;
-      })); 
+    this.dataPassed.patient = this.myForm.get('searchInput').value;
   }
 
   displayFn(patient: Patient): string {
@@ -56,6 +52,7 @@ export class SeanceComponent implements OnInit {
   }
 
   onChangeConfirm() {
-    this.isConfirm = this.confirmForm.value;
+    this.isConfirm = this.myForm.get('confirmInput').value;
+    console.log('this.isConfirm : ', this.isConfirm);
   }
 }

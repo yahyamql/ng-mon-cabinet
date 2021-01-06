@@ -1,6 +1,8 @@
+import { FAMILY_SITUATION } from "../shared/Constants";
+
 export class Patient {
-    public  id ?: String;
-    public  firstName ?: String;
+    public id ?: String;
+    public firstName ?: String;
     public lastName ?: String;
     public address ?: String;
     public tel ?: Number;
@@ -8,8 +10,6 @@ export class Patient {
     public numberChildren ?: Number = 0;
     public gender ?: String = 'HOMME';
     public insurance ?: String = 'Sans';
-    public familySituation ?: String;
+    public familySituation ?: String = FAMILY_SITUATION.single.key;
     public dateBirth ?: Date;
-
-    
 }

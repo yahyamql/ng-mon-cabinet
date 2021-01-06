@@ -1,43 +1,60 @@
-<h1 mat-dialog-title class="example-full-width">Créer un rendez-vous</h1>
-<div mat-dialog-content class="full-wdith">
-  <form [formGroup]="myControl" class="example-form">
-    <p>
-      <strong>A :</strong> {{dataPassed.currentDateTime | date:'medium'}} 
-    </p>
-    <mat-form-field appearance="outline" class="example-full-width">
-      <mat-label>Chercher par nom ou prénom</mat-label>
-      <input 
-      required 
-      type="text"
-      (keyup)="onSearch($event)"
-      matInput [formControl]="searchPatientForm" 
-      [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption  #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option.firstName}} {{option.lastName}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <mat-slide-toggle
-          
-          [formControl]="confirmForm"
-            class="example-margin"
-            (change)="onChangeConfirm()">
-      <span>Passé(e)</span>
-    </mat-slide-toggle>
+<h1 mat-dialog-title >Créer un rendez-vous</h1>
+<div mat-dialog-content class="container">
+  <form [formGroup]="myForm" >
+    <div class="row">
+      <p>
+        <strong>A :</strong> {{dataPassed.dateSeance | date:'medium'}} 
+      </p>
+
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" >
+        <mat-label>Chercher par nom ou prénom</mat-label>
+        <input 
+        required 
+        type="text"
+        (keyup)="onSearch($event)"
+        matInput 
+        formControlName="searchInput" 
+        [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption  #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.firstName}} {{option.lastName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+    </div>
+    <div class="row">
+      <mat-slide-toggle
+              formControlName="confirmInput" 
+              (change)="onChangeConfirm()">
+              <span>Passé(e)</span>
+      </mat-slide-toggle>
+    </div>
+    <div class="row">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Commentaire</mat-label>
+        <input 
+        class="form-control"
+        matInput 
+        formControlName="comentInput">
+      </mat-form-field>
+    </div>
   </form>
   
 </div>
 <mat-dialog-actions align="end">
   <button 
-  
-  mat-button 
-  [mat-dialog-close]="true" 
-  type="submit"
-  (click)="onCreate()"
-  cdkFocusInitial 
-  mat-raised-button 
-  color="primary">
-  Enregistrer</button>
+    mat-button 
+    [mat-dialog-close]="true" 
+    type="submit"
+    (click)="onCreate()"
+    cdkFocusInitial 
+    mat-raised-button 
+    color="primary">
+    Enregistrer
+</button>
   <button mat-button mat-dialog-close>Annuler</button>
 </mat-dialog-actions>

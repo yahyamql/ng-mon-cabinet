@@ -59,7 +59,7 @@
             [(value)]="patient.familySituation"
             name="patient.familySituation"
             required>
-              <mat-option [value]="familySituation.single.key">{{familySituation.single.value}}</mat-option>
+              <mat-option checked [value]="familySituation.single.key">{{familySituation.single.value}}</mat-option>
               <mat-option [value]="familySituation.maried.key">{{familySituation.maried.value}}</mat-option>
               <mat-option [value]="familySituation.divorced.key">{{familySituation.divorced.value}}</mat-option>
             </mat-select>

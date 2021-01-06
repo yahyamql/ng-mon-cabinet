@@ -3,23 +3,33 @@ import { MatDialog } from '@angular/material/dialog';
 import { FullCalendarComponent, CalendarOptions, EventApi } from '@fullcalendar/angular';
 import { SeanceComponent } from '../seance/seance.component';
 import { FormControl } from '@angular/forms';
+import frLocale from '@fullcalendar/core/locales/fr';
+import { Subject } from 'rxjs';
+import { Patient } from 'src/app/model/Patient.model';
+import { Seance } from 'src/app/model/Seance.model';
 
 @Component({
   selector: 'app-manage-agenda',
   templateUrl: './manage-agenda.component.html',
   styleUrls: ['./manage-agenda.component.css']
 })
+
 export class ManageAgendaComponent implements OnInit {
-  dataPassedToSeance = {
-    fullName: '',
-    currentDateTime: ''
-  };
+  seance = new Seance();
+
+  seances = [
+    { title: 'event 1', date: '2020-12-25' },
+    { title: 'event 1', date: '2020-12-25' },
+    { title: 'event 1', date: '2020-12-25' },
+    { title: 'event 2', date: '2021-01-06' },
+    
+  ];
 
    // references the #calendar in the template
    @ViewChild('calendar') calendarComponent: FullCalendarComponent;
 
    calendarOptions: CalendarOptions = {
-     locale: 'fr',
+     locale: frLocale,
     editable: true,
     selectable: true,
     height: "auto",
@@ -37,16 +47,7 @@ export class ManageAgendaComponent implements OnInit {
       },
      slotDuration: '00:30 ', // 2 hours
      dateClick: this.handleDateClick.bind(this), // bind is important!
-     events: [
-      { title: 'event 1', date: '2020-12-25' },
-      { title: 'event 1', date: '2020-12-25' },
-      { title: 'event 1', date: '2020-12-25' },
-      { title: 'event 1', date: '2020-12-25' },
-      { title: 'event 1', date: '2020-12-25' },
-      { title: 'event 1', date: '2020-12-25' },
-      { title: 'event 2', date: '2020-12-25' }
-      
-    ]
+     events: this.seances
    };
  
   someMethod() {
@@ -55,23 +56,25 @@ export class ManageAgendaComponent implements OnInit {
    }
 
   handleDateClick(arg) {
-   // console.log('arg : ', arg);
-   //alert('date click! ' + arg.dateStr)
-    this.onCreateSeance(arg.dateStr);
+      this.seance.dateSeance = arg.dateStr;
+      const dialogRef = this.dialog.open(SeanceComponent, 
+        {data: this.seance});
+      dialogRef.afterClosed().subscribe((result: boolean) => {
+        if(result) {
+          this.calendarComponent.getApi().addEvent({ title: this.seance.patient.firstName + '', date: this.seance.dateSeance + '' })
+          this.calendarComponent.getApi().addEvent({ title: 'event 3', date: '2021-01-07' })
+        }
+    //    console.log(`Dialog result: ${result}`);
+    //    console.log('dataPassedToSeance.currentDateTime : ', this.dataPassedToSeance.dateSeance);
+   // console.log('dataPassedToSeance.fullName : ', this.dataPassedToSeance.patient.firstName);
+    console.log('dataPassedToSeance : ', this.seance);
+      });
   }
 
   constructor(public dialog: MatDialog) { }
 
-  ngOnInit() {}
-
-  onCreateSeance(arg) {
-    this.dataPassedToSeance.currentDateTime = arg;
-    const dialogRef = this.dialog.open(SeanceComponent, 
-      {data: this.dataPassedToSeance});
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      console.log('dataPassedToSeance.currentDateTime : ', this.dataPassedToSeance.currentDateTime);
-      console.log('dataPassedToSeance.fullName : ', this.dataPassedToSeance.fullName);
-    });
+  ngOnInit() {
   }
+
+  
 }

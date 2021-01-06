@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   
   title = 'ng-medecin';
   subTitle: String = 'Mon cabinet';
-  isOpen: boolean;
+  isOpen: boolean = true;
   
   
   ngOnInit() {

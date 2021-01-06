@@ -1,8 +1,9 @@
-.example-form {
-   
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
+
+ mat-form-field {
+   width: 500px;
+ }
+  .row {
+    width: auto;
+    margin-top: 6px;
+    margin-left: 6px;
   }
