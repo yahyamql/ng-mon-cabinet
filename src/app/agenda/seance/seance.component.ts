@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import { Patient } from 'src/app/model/Patient.model';
 import { Seance } from 'src/app/model/Seance.model';
 import { AgendaService } from '../agenda.service';
@@ -18,19 +18,16 @@ export class SeanceComponent implements OnInit {
   filteredOptions: Observable<Patient[]>;
   options: Patient[] = [];
   keyword: String;
+  isExist = false;
   constructor(@Inject(MAT_DIALOG_DATA) public dataPassed: any,
               private agendaService: AgendaService) {}
-
               
   ngOnInit() {
-    this.myForm = new FormGroup( {
+    this.myForm = new FormGroup({
       'confirmInput': new FormControl(null),
-      'comentInput': new FormControl(null),
-      'searchInput': new FormControl(null),
-    })
-    
- }
-
+      'commentInput': new FormControl(null),
+      'searchInput': new FormControl(null, [Validators.required, this.isPatientExists.bind(this)]),
+    })}
 
   onSearch(event: any) {
     if(event.target.value != this.keyword) {
@@ -45,13 +42,30 @@ export class SeanceComponent implements OnInit {
 
   onCreate() {
     this.dataPassed.patient = this.myForm.get('searchInput').value;
+    this.dataPassed.comment = this.myForm.get('commentInput').value;
+    this.dataPassed.isConfirm = this.myForm.get('confirmInput').value;
+/* 
+    this.filteredOptions.subscribe(patients => {
+      console.log('this.myForm.get(searchInput).value : ', this.myForm.get('searchInput').value)
+      console.log('patients : ', patients)
+      if(patients.indexOf(this.myForm.get('searchInput').value) >= 0) {
+        this.isExist = true;
+      } else {
+        this.isExist = false
+      }
+      console.log('this.isExist : ', this.isExist)
+    }) */
   }
 
   displayFn(patient: Patient): string {
     return patient && patient.firstName ? patient.firstName + ' ' + patient.lastName : '';
   }
 
-  onChangeConfirm() {
-    this.isConfirm = this.myForm.get('confirmInput').value;
-  }
+   isPatientExists(control: FormControl): {[s: string]: boolean} {
+    if(control.value instanceof Object) {
+      return null;
+    } else {
+      return {'exist': true};
+    }
+  } 
 }

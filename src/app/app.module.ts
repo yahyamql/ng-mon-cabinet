@@ -11,6 +11,8 @@ import { PatientModule } from './patient/patient.module';
 import { RouterModule } from '@angular/router';
 import { AgendaModule } from './agenda/agenda.module';
 import { MaterialModule } from './material/material.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorService } from './service/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { MaterialModule } from './material/material.module';
     AgendaModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent],
   exports: [AddNewPatientComponent]
 })

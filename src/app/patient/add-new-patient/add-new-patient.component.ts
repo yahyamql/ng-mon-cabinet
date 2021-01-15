@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class AddNewPatientComponent implements OnInit {
   familySituation = FAMILY_SITUATION;
   patient: Patient = new Patient();
-  
+
   constructor(private patientService: PatientService) { }
 
   ngOnInit() {}

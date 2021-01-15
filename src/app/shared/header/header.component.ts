@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   }
  
 
-  constructor( private facadeService: FacadeService) { }
+  constructor( public facadeService: FacadeService) { }
 
   ngOnInit() {
  
