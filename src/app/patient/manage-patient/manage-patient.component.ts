@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Patient } from 'src/app/model/Patient.model';
 import { PatientService } from 'src/app/service/patient.service';
 import { DialogContentComponent } from 'src/app/shared/dialog-content/dialog-content.component';
 import Swal  from 'sweetalert2/dist/sweetalert2.js';
 import { AddNewPatientComponent } from '../add-new-patient/add-new-patient.component';
+import { UpdatePatientComponent } from '../update-patient/update-patient.component';
 
 
 @Component({
@@ -32,6 +34,19 @@ export class ManagePatientComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
       if(result) {this.getAllPatient();}
     });
+  }
+
+  updatePatient(id: number) {
+    this.patientService.get(id).subscribe(result => {
+      console.log("patient for update is HERE:",result);
+        const dialogRef = this.dialog.open(UpdatePatientComponent,  {data:result});
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+          if(result) {this.getAllPatient();}
+        });
+    });
+  
+
   }
   
   applyFilter(event: Event) {
