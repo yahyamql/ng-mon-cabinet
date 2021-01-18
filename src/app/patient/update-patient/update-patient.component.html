@@ -22,16 +22,19 @@
           <mat-error >champ obligatoire</mat-error>
         </mat-form-field></td>
       </tr></table>
+      <h4>
+        {{patient.dateBirth}}
+      </h4>
       <table>
         <td>
           <mat-form-field appearance="outline">
             <mat-label>Date de naissance</mat-label>
             <input 
-            [(ngModel)]="patient.dateBirth" 
-            name="patient.dateBirth" 
+           
             placeholder="6/12/1991" matInput 
             [matDatepicker]="picker" 
             class="form-control" 
+            [formControl]="date"
             required>
             <mat-error >champ obligatoire</mat-error>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

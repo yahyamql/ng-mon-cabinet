@@ -1,4 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormControl, NgForm } from '@angular/forms';
+import { MatDatepicker } from '@angular/material/datepicker';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Patient } from 'src/app/model/Patient.model';
 import { PatientService } from 'src/app/service/patient.service';
@@ -11,18 +13,25 @@ import Swal from 'sweetalert2';
   styleUrls: ['./update-patient.component.css']
 })
 export class UpdatePatientComponent implements OnInit {
+  @ViewChild('picker') datePicker: MatDatepicker<Date>;
+  @ViewChild('f') editPatientForm: NgForm;
   familySituation = FAMILY_SITUATION;
-  patient: Patient = new Patient();
-  constructor(@Inject(MAT_DIALOG_DATA) public dataPassed: any,
-    private patientService: PatientService) { }
-
+  patient: Patient;
+  date = new FormControl(new Date());;
+  constructor(@Inject(MAT_DIALOG_DATA) public dataPassed: Patient,
+    private patientService: PatientService) {}
   ngOnInit() {
-  console.log("dataPassed is complete",this.dataPassed)
-      this.patient=this.dataPassed;
+    //console.log('dateBirth : ', this.dateBirth);
+    this.patient=this.dataPassed;
+    this.date.setValue( new Date());
+
+  }
+  ngAfterViewInit(): void {
+    
+    
   }
  
   onSubmit() {
-    console.log('updatePatient : ', this.patient);
     this.patientService.update(this.patient).subscribe((data)=> {
       console.log(data);
       Swal.fire({
@@ -39,5 +48,4 @@ export class UpdatePatientComponent implements OnInit {
       })
     });
   }
-
 }

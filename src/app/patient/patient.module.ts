@@ -4,7 +4,7 @@ import { AddNewPatientComponent } from './add-new-patient/add-new-patient.compon
 import { ManagePatientComponent } from './manage-patient/manage-patient.component';
 import { PatientService } from '../service/patient.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
 
@@ -15,10 +15,11 @@ import { UpdatePatientComponent } from './update-patient/update-patient.componen
     CommonModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [PatientService,
   ],
-  exports: [AddNewPatientComponent]
+  exports: [AddNewPatientComponent, UpdatePatientComponent]
 })
 export class PatientModule { }

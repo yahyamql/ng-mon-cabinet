@@ -37,8 +37,8 @@ export class ManagePatientComponent implements OnInit {
   }
 
   updatePatient(id: number) {
-    this.patientService.get(id).subscribe(result => {
-      console.log("patient for update is HERE:",result);
+    this.patientService.get(id).subscribe((result: Patient) => {
+      console.log("get patient for update:",result);
         const dialogRef = this.dialog.open(UpdatePatientComponent,  {data:result});
         dialogRef.afterClosed().subscribe(result => {
           console.log(`Dialog result: ${result}`);
