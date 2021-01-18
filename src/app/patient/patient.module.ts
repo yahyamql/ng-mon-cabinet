@@ -6,10 +6,11 @@ import { PatientService } from '../service/patient.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { UpdatePatientComponent } from './update-patient/update-patient.component';
 
 
 @NgModule({
-  declarations: [AddNewPatientComponent, ManagePatientComponent],
+  declarations: [AddNewPatientComponent, ManagePatientComponent, UpdatePatientComponent],
   imports: [
     CommonModule,
     FormsModule,

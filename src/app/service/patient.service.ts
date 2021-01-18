@@ -22,4 +22,11 @@ export class PatientService {
     return this.http.delete(environment.BASE_API + PATIENT_URL + id);
   }
 
+  get(id: number) {
+    return this.http.get(environment.BASE_API + PATIENT_URL + id);
+  }
+
+  update(patient: Patient) {
+    return this.http.put(environment.BASE_API + PATIENT_URL, patient);
+  }
 }
