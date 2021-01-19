@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -13,22 +14,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./update-patient.component.css']
 })
 export class UpdatePatientComponent implements OnInit {
-  @ViewChild('picker') datePicker: MatDatepicker<Date>;
-  @ViewChild('f') editPatientForm: NgForm;
+  pipe = new DatePipe('en-US');
   familySituation = FAMILY_SITUATION;
   patient: Patient;
-  date = new FormControl(new Date());;
+  dateBirthForm = new FormControl(new Date());;
   constructor(@Inject(MAT_DIALOG_DATA) public dataPassed: Patient,
-    private patientService: PatientService) {}
+             private patientService: PatientService) {}
   ngOnInit() {
     this.patient=this.dataPassed;
-    this.date.setValue(new Date(this.patient.dateBirth));
+    this.dateBirthForm.setValue(new Date(this.patient.dateBirth));
   }
 
-  ngAfterViewInit(): void {
-  }
- 
   onSubmit() {
+    this.patient.dateBirth = this.dateBirthForm.value;
     this.patientService.update(this.patient).subscribe((data)=> {
       console.log(data);
       Swal.fire({

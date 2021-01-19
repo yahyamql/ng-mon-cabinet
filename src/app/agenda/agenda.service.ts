@@ -19,6 +19,7 @@ export class AgendaService {
   }
 
   insert(seance: Seance) {
+    console.log('seance:',seance);
     return this.http.post(environment.BASE_API + SEANCE_URL, seance);
   }
 }

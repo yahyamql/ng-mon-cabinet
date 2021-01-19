@@ -68,8 +68,6 @@ export class ManageAgendaComponent implements OnInit {
              extendedProps: {
               comment: this.seance.comment
             },
-            
-            
             })
           console.log('this.seance : ', this.seance)
           this.agendaService.insert(this.seance).subscribe((res)=> console.log('seance inserted : ', res));

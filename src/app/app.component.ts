@@ -17,13 +17,13 @@ export class AppComponent implements OnInit {
   }
 
   onToggle(event) {
-    console.log('parent: ', event);
+    //console.log('parent: ', event);
     this.isOpen = event;
   }
 
 
   onChangeTitle(event) {
-    console.log('parent: ', event);
+    //console.log('parent: ', event);
     this.subTitle = event;
   }
   constructor(private facadeService: FacadeService){}

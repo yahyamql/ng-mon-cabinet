@@ -42,19 +42,9 @@ export class SeanceComponent implements OnInit {
 
   onCreate() {
     this.dataPassed.patient = this.myForm.get('searchInput').value;
+    this.dataPassed.idPatient = this.dataPassed.patient.id;
     this.dataPassed.comment = this.myForm.get('commentInput').value;
     this.dataPassed.isConfirm = this.myForm.get('confirmInput').value;
-/* 
-    this.filteredOptions.subscribe(patients => {
-      console.log('this.myForm.get(searchInput).value : ', this.myForm.get('searchInput').value)
-      console.log('patients : ', patients)
-      if(patients.indexOf(this.myForm.get('searchInput').value) >= 0) {
-        this.isExist = true;
-      } else {
-        this.isExist = false
-      }
-      console.log('this.isExist : ', this.isExist)
-    }) */
   }
 
   displayFn(patient: Patient): string {

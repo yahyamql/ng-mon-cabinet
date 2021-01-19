@@ -22,9 +22,6 @@
           <mat-error >champ obligatoire</mat-error>
         </mat-form-field></td>
       </tr></table>
-      <h4>
-        {{patient.dateBirth | date}}
-      </h4>
       <table>
         <td>
           <mat-form-field appearance="outline">
@@ -34,7 +31,7 @@
             placeholder="6/12/1991" matInput 
             [matDatepicker]="picker" 
             class="form-control" 
-            [formControl]="date"
+            [formControl]="dateBirthForm"
             required>
             <mat-error >champ obligatoire</mat-error>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

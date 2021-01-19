@@ -29,7 +29,6 @@ export class ManagePatientComponent implements OnInit {
 
   addNewPatient() {
     const dialogRef = this.dialog.open(AddNewPatientComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if(result) {this.getAllPatient();}
@@ -61,7 +60,7 @@ export class ManagePatientComponent implements OnInit {
     });
   }
 
-  getAllPatient() {
+getAllPatient() {
     this.patientService.getAll().subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data);
     });
