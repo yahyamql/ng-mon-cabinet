@@ -21,14 +21,11 @@ export class UpdatePatientComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public dataPassed: Patient,
     private patientService: PatientService) {}
   ngOnInit() {
-    //console.log('dateBirth : ', this.dateBirth);
     this.patient=this.dataPassed;
-    this.date.setValue( new Date());
-
+    this.date.setValue(new Date(this.patient.dateBirth));
   }
+
   ngAfterViewInit(): void {
-    
-    
   }
  
   onSubmit() {

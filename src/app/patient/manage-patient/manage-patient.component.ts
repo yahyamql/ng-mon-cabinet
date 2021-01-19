@@ -45,8 +45,6 @@ export class ManagePatientComponent implements OnInit {
           if(result) {this.getAllPatient();}
         });
     });
-  
-
   }
   
   applyFilter(event: Event) {
