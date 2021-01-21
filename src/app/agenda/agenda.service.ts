@@ -24,6 +24,9 @@ export class AgendaService {
     return this.http.post(environment.BASE_API + SEANCE_URL, seance);
   }
 
+  getSeanceByPatientID(idPatient: number) {
+    return this.http.get(environment.BASE_API + SEANCE_URL + idPatient);
+
   deleteSeance(idSeance: number) {
     return this.http.delete(environment.BASE_API + SEANCE_URL + idSeance);
   }

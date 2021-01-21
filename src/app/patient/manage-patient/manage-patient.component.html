@@ -39,7 +39,9 @@
 
   <ng-container matColumnDef="dateCreation">
     <th mat-header-cell *matHeaderCellDef> Date & heure création </th>
+
     <td mat-cell *matCellDef="let element"> {{element.dateCreation | date:'dd/MM/yyyy, h:mm a'}} </td>
+
   </ng-container>
 
   <ng-container matColumnDef="action">
@@ -47,7 +49,7 @@
     <td mat-cell *matCellDef="let element">
       <!--Actions per row-->
       <div class="example-button-row">
-        <button mat-button color="primary" (click)="openDialog()">Détails</button>
+        <button mat-button color="primary" (click)="openDialog(element.id)">Détails</button>
         <button mat-button color="accent" (click)="updatePatient(element.id)">Modifier</button>
         <button mat-button color="warn" (click)='deletePatient(element.id)'>Supprimer</button>
       </div>

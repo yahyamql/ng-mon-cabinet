@@ -1,10 +1,12 @@
 import { Patient } from "./Patient.model";
 
 export class Seance {
-    public id ?: Number;
-    public patient ?: Patient;
+
+    public id ?: number;
     public comment ?: string;
-    public isConfirm ?: string;
-    public dateSeance ?: string;
-    public title ?: string;
+    public dateSeance ?: Date;
+    public confirm ?: string; 
+    public title ?: string; 
+    public patient ?: Patient; 
+
 }

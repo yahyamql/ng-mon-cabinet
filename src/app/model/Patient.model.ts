@@ -1,7 +1,7 @@
 import { FAMILY_SITUATION } from "../shared/Constants";
 
 export class Patient {
-    public id ?: String;
+    public id ?: number;
     public firstName ?: String;
     public lastName ?: String;
     public address ?: String;
