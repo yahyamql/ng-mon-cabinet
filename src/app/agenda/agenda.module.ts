@@ -11,6 +11,7 @@ import { MaterialModule } from '../material/material.module';
 import { SeanceComponent } from './seance/seance.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgendaService } from './agenda.service';
+import { UpdateSeanceComponent } from './update-seance/update-seance.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -19,7 +20,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   listPlugin,
 ]);
 @NgModule({
-  declarations: [ManageAgendaComponent, SeanceComponent],
+  declarations: [ManageAgendaComponent, SeanceComponent, UpdateSeanceComponent],
   imports: [
     CommonModule,
     FullCalendarModule,
