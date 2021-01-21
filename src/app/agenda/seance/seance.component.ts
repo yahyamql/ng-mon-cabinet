@@ -23,6 +23,8 @@ export class SeanceComponent implements OnInit {
               private agendaService: AgendaService) {}
               
   ngOnInit() {
+    console.log('dataPassed:', this.dataPassed);
+    
     this.myForm = new FormGroup({
       'confirmInput': new FormControl(null),
       'commentInput': new FormControl(null),
@@ -41,10 +43,24 @@ export class SeanceComponent implements OnInit {
     }
 
   onCreate() {
-    this.dataPassed.patient = this.myForm.get('searchInput').value;
-    this.dataPassed.idPatient = this.dataPassed.patient.id;
-    this.dataPassed.comment = this.myForm.get('commentInput').value;
-    this.dataPassed.isConfirm = this.myForm.get('confirmInput').value;
+    this.dataPassed.event = {
+      start: this.dataPassed.date,
+      title: this.myForm.get('searchInput').value.firstName + ' ' +
+      this.myForm.get('searchInput').value.lastName,
+      extendedProps : {
+        patient: this.myForm.get('searchInput').value,
+        idPatient : this.myForm.get('searchInput').value.id,
+        comment : this.myForm.get('commentInput').value,
+        confirm : this.myForm.get('confirmInput').value,
+      }
+    }
+
+   /*  this.dataPassed.event.extendedProps.patient = this.myForm.get('searchInput').value;
+    this.dataPassed.event.extendedProps.idPatient = this.myForm.get('searchInput').value.id;
+    this.dataPassed.event.extendedProps.comment = this.myForm.get('commentInput').value;
+    this.dataPassed.event.extendedProps.confirm = this.myForm.get('confirmInput').value;
+    this.dataPassed.event.title = this.myForm.get('searchInput').value.firstName + ' ' +
+                            this.myForm.get('searchInput').value.lastName; */
   }
 
   displayFn(patient: Patient): string {

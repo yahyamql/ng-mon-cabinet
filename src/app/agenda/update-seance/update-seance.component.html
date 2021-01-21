@@ -1,10 +1,14 @@
-<h1 mat-dialog-title >Créer un rendez-vous</h1>
+<h1 mat-dialog-title >Modifier rendez-vous</h1>
 <div mat-dialog-content class="container">
   <form [formGroup]="myForm" >
     <div class="row">
-      <p>
-        <strong>A :</strong> {{dataPassed.date | date:'dd/MM/yyyy, h:mm a'}} 
-      </p>
+      <div class="col">
+        <strong>De :</strong> {{eventJson.start | date:'dd/MM/yyyy, h:mm a'}} 
+      </div>
+      <div class="col">
+        <strong>A :</strong> {{eventJson.end | date:'dd/MM/yyyy, h:mm a'}} 
+      </div>
+        
     </div>
     <div class="row">
       <mat-form-field appearance="outline" >
@@ -53,7 +57,15 @@
     cdkFocusInitial 
     mat-raised-button 
     color="primary">
-    Enregistrer
+    Modifier
+</button>
+<button 
+    mat-button 
+    (click)="onDelete()"
+    mat-raised-button 
+    mat-dialog-close
+    color="primary">
+    Supprimer
 </button>
   <button mat-button mat-dialog-close>Annuler</button>
 </mat-dialog-actions>
