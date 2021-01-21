@@ -29,18 +29,6 @@ export class UpdatePatientComponent implements OnInit {
     this.patient.dateBirth = this.dateBirthForm.value;
     this.patientService.update(this.patient).subscribe((data)=> {
       console.log(data);
-      Swal.fire({
-        icon: 'success',
-        title: 'Patient modifié avec succés',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    },err=> {
-      Swal.fire({
-        icon: 'error',
-        title: 'saisi incorrect',
-        text: 'Something went wrong!',
-      })
     });
   }
 }

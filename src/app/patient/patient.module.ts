@@ -7,10 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
+import { ConsultPatientComponent } from './consult-patient/consult-patient.component';
 
 
 @NgModule({
-  declarations: [AddNewPatientComponent, ManagePatientComponent, UpdatePatientComponent],
+  declarations: [AddNewPatientComponent, ManagePatientComponent, UpdatePatientComponent, ConsultPatientComponent],
   imports: [
     CommonModule,
     FormsModule,

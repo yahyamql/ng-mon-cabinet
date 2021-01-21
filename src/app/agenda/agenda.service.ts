@@ -22,4 +22,8 @@ export class AgendaService {
     console.log('seance:',seance);
     return this.http.post(environment.BASE_API + SEANCE_URL, seance);
   }
+
+  getSeanceByPatientID(idPatient: number) {
+    return this.http.get(environment.BASE_API + SEANCE_URL + idPatient);
+  }
 }

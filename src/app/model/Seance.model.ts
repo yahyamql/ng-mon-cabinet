@@ -1,8 +1,9 @@
 import { Patient } from "./Patient.model";
 
 export class Seance {
-    public id ?: Number;
-    public patient ?: Patient;
-    public comment ?: String;
-    public dateSeance ?: String;
+    public id ?: number;
+    public comment ?: string;
+    public dateSeance ?: Date;
+    public confirm ?: string; 
+    public patient ?: Patient; 
 }

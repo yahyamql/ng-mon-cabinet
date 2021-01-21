@@ -1,0 +1,100 @@
+<h2 mat-dialog-title>Détails du patient: </h2>
+<form  #f="ngForm">
+    <mat-dialog-content>
+        <div class="container-100">
+            <table>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Prénom</mat-label>
+                            <input matInput [(ngModel)]="patient.firstName" name="patient.firstName" disabled
+                                class="form-control">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                   
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <td>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Date de naissance</mat-label>
+                        <input placeholder="6/12/1991" matInput [matDatepicker]="picker" class="form-control"
+                            [formControl]="dateBirthForm" disabled>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-radio-group appearance="outline" [(ngModel)]="patient.gender" aria-label="Select an option"
+                        name="patient.dateBirth" disabled>
+
+                        <mat-radio-button name="gender" value="HOMME">Homme</mat-radio-button>
+                        <mat-radio-button name="gender" value="FEMME">Femme</mat-radio-button>
+                    </mat-radio-group>
+                </td>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Situation familiale</mat-label>
+                            <mat-select [(value)]="patient.familySituation" name="patient.familySituation" disabled>
+                                <mat-option checked [value]="familySituation.single.key" >
+                                    {{familySituation.single.value}}</mat-option>
+                                <mat-option [value]="familySituation.maried.key">{{familySituation.maried.value}}
+                                </mat-option>
+                                <mat-option [value]="familySituation.divorced.key">{{familySituation.divorced.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="ml-1" appearance="outline">
+                            <mat-label>Nombre d'enfant</mat-label>
+                            <input type="number" [(ngModel)]="patient.numberChildren" name="patient.numberChildren"
+                                matInput placeholder="Ex. 3" class="form-control" disabled>
+                        </mat-form-field>
+
+                    </td>
+                    <td>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Numéro portable</mat-label>
+                            <input type="text" tel [(ngModel)]="patient.tel" name="patient.tel" pattern="[0-9]*"
+                                matInput placeholder="Ex. 06 XX XX XX XX" disabled>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="full-width" cellspacing="0">
+                <tr>
+                    <!--address -->
+                    <td>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Addresse complète</mat-label>
+                            <textarea class="form-control" matInput placeholder="Ex. Rue Badr..."
+                                [(ngModel)]="patient.address" name="patient.address" disabled>
+            </textarea>
+                        </mat-form-field>
+                    </td>
+                    <!--Assurance -->
+                    <td>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Assurance</mat-label>
+                            <input class="form-control" type="text" [(ngModel)]="patient.insurance"
+                                name="patient.insurance" matInput placeholder="Ex. Axa" disabled>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Fermer</button>
+    </mat-dialog-actions>
+</form>
