@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { EventInput } from '@fullcalendar/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Patient } from '../model/Patient.model';
-import { Seance } from '../model/Seance.model';
 
 const SEANCE_URL = 'seance/'
 const GET_PATIENT_URL = 'get-patient'
@@ -26,6 +24,7 @@ export class AgendaService {
 
   getSeanceByPatientID(idPatient: number) {
     return this.http.get(environment.BASE_API + SEANCE_URL + idPatient);
+  }
 
   deleteSeance(idSeance: number) {
     return this.http.delete(environment.BASE_API + SEANCE_URL + idSeance);

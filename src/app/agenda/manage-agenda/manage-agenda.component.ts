@@ -17,7 +17,6 @@ import { UpdateSeanceComponent } from '../update-seance/update-seance.component'
 })
 
 export class ManageAgendaComponent implements OnInit {
-  seance = new Seance();
   idEventToDelete ="";
    // references the #calendar in the template
    @ViewChild('calendar') calendarComponent: FullCalendarComponent;
@@ -73,7 +72,6 @@ export class ManageAgendaComponent implements OnInit {
   onEventClick(arg) {
     let event = arg.event;
     console.log('onEventClick : ', arg);
-      this.seance.dateSeance = arg.dateStr;
       const dialogRef = this.dialog.open(UpdateSeanceComponent, 
         {data: event});
       dialogRef.afterClosed().subscribe((result: boolean) => {
@@ -141,7 +139,6 @@ export class ManageAgendaComponent implements OnInit {
               comment: this.seance.comment,
               isConfirm: this.seance.isConfirm},
             }) */
-          console.log('this.seance : ', this.seance)
           this.agendaService.insert(dataToPass.event).subscribe((res)=>{
             console.log('seance inserted : ', res)
             this.calendarComponent.getApi().refetchEvents();
