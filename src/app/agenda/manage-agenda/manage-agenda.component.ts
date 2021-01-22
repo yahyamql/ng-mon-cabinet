@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FullCalendarComponent, CalendarOptions, EventApi, EventInput } from '@fullcalendar/angular';
-import { SeanceComponent } from '../seance/seance.component';
+import { AddSeanceComponent } from '../add-seance/add-seance.component';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { Seance } from 'src/app/model/Seance.model';
 import { AgendaService } from '../agenda.service';
@@ -27,6 +27,7 @@ export class ManageAgendaComponent implements OnInit {
   contextMenuPosition = { x: '0px', y: '0px' };
 
     calendarOptions: CalendarOptions = {
+      allDaySlot: false,
     titleFormat: { // will produce something like "Tuesday, September 18, 2018"
     month: 'long',
     year: 'numeric',
@@ -40,20 +41,18 @@ export class ManageAgendaComponent implements OnInit {
     nowIndicator: true,
     dayMaxEvents: true,
     weekNumbers: true,
-    
+    slotMinTime: "08:00:00",
+    slotMaxTime: "20:00:00",
     initialView: 'timeGridWeek',
-     
     navLinks: true, // can click day/week names to navigate views
     headerToolbar: {
        left: 'prev,next today',
        center: 'title',
        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
-    slotDuration: '00:30 ', // 2 hours
+    slotDuration: '00:15', // 2 hours
     dateClick: this.onDateClick.bind(this), // bind is important!
     eventClick: this.onEventClick.bind(this),
-    eventDrop:this.onEventDrob.bind(this),
-    eventResize:this.onEventResize.bind(this),
     eventChange:this.onEventChange.bind(this),
     eventRemove:this.onEventRemove.bind(this),
     eventAdd:this.onEventAdd.bind(this),
@@ -92,6 +91,7 @@ export class ManageAgendaComponent implements OnInit {
       this.calendarComponent.getApi().refetchEvents();
     });
   }
+
   onEventRemove(arg) {
     this.agendaService.deleteSeance(arg.event.toPlainObject().id).subscribe(()=>{
       console.log('Event to delete : ', arg.event.toPlainObject().id);
@@ -99,26 +99,11 @@ export class ManageAgendaComponent implements OnInit {
     });
   }
 
-  onEventDrob(arg) {
-    console.log('onEventDrob : ', arg);
-  }
-  
-  onEventResize(arg) {
-    console.log('onEventResize : ', arg);
-  }
-
-
   getAllSeance() {
     this.agendaService.getAll().subscribe((res: Array<any>)=> {
       res.forEach(element => {
-        
         this.calendarComponent.getApi().addEvent(element);
       });
-        console.log('this.calendarComponent.getApi().getEvents() : ', 
-            this.calendarComponent.getApi().getEvents());
-      
-            console.log('this.calendarComponent.getApi().getEventSources() : ', 
-            this.calendarComponent.getApi().getEventSources());
     })
   }
 
@@ -127,18 +112,10 @@ export class ManageAgendaComponent implements OnInit {
     let dataToPass = {date:arg.date, event: {}};
     console.log('arg.date', arg.date);
     
-      const dialogRef = this.dialog.open(SeanceComponent, 
+      const dialogRef = this.dialog.open(AddSeanceComponent, 
         {data: dataToPass});
       dialogRef.afterClosed().subscribe((result: boolean) => {
         if(result) {
-          //this.seance.title = this.seance.patient.firstName + ' ' + this.seance.patient.lastName;
-         /*  this.calendarComponent.getApi().addEvent(
-            { title: this.seance.title,
-              date: this.seance.dateSeance + '',
-              extendedProps: {
-              comment: this.seance.comment,
-              isConfirm: this.seance.isConfirm},
-            }) */
           this.agendaService.insert(dataToPass.event).subscribe((res)=>{
             console.log('seance inserted : ', res)
             this.calendarComponent.getApi().refetchEvents();
@@ -156,27 +133,6 @@ export class ManageAgendaComponent implements OnInit {
     private agendaService: AgendaService) { }
 
   ngOnInit() {
-   // this.getAllSeance();
   }
-/* 
-  onContextMenu(event: MouseEvent, item: Item) {
-    event.preventDefault();
-    this.contextMenuPosition.x = event.clientX + 'px';
-    this.contextMenuPosition.y = event.clientY + 'px';
-   // this.contextMenu.menuData = { 'item': item };
-    //this.contextMenu.menu.focusFirstItem('mouse');
-    this.contextMenu.openMenu();
-  }
-
-  onContextMenuAction1(item: Item) {
-    alert(`Click on Action 1 for ${item.name}`);
-  }
-
-  onContextMenuAction2(item: Item) {
-    alert(`Click on Action 2 for ${item.name}`);
-  } */
-
-  
-
   
 }

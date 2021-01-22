@@ -8,7 +8,7 @@ import listPlugin from '@fullcalendar/list'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import timeGridPlugin  from '@fullcalendar/timegrid'; // a plugin
 import { MaterialModule } from '../material/material.module';
-import { SeanceComponent } from './seance/seance.component';
+import { AddSeanceComponent } from './add-seance/add-seance.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgendaService } from './agenda.service';
 import { UpdateSeanceComponent } from './update-seance/update-seance.component';
@@ -20,7 +20,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   listPlugin,
 ]);
 @NgModule({
-  declarations: [ManageAgendaComponent, SeanceComponent, UpdateSeanceComponent],
+  declarations: [ManageAgendaComponent, AddSeanceComponent, UpdateSeanceComponent],
   imports: [
     CommonModule,
     FullCalendarModule,

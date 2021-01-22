@@ -7,11 +7,11 @@ import { Patient } from 'src/app/model/Patient.model';
 import { Seance } from 'src/app/model/Seance.model';
 import { AgendaService } from '../agenda.service';
 @Component({
-  selector: 'app-seance',
-  templateUrl: './seance.component.html',
-  styleUrls: ['./seance.component.css']
+  selector: 'app-add-seance',
+  templateUrl: './add-seance.component.html',
+  styleUrls: ['./add-seance.component.css']
 })
-export class SeanceComponent implements OnInit {
+export class AddSeanceComponent implements OnInit {
   isConfirm: boolean;
   seance: Seance;
   myForm: FormGroup;
